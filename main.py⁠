@@ -1,0 +1,27 @@
+# Main Orchestrator for Makky Film Pipeline
+
+from config import print_studio_config
+from writer import FilmWriter
+from assembler import FilmAssembler
+
+def run_pipeline():
+    print("\n🎬 INITIALIZING MAKKY FILM PRODUCTION PIPELINE 🎬\n")
+    
+    # 1. Load Configuration
+    print_studio_config()
+    
+    # 2. Run The Writer (Generate Storyboard)
+    print("--- Step 1: Running The Writer ---")
+    writer = FilmWriter("MakkySignature", "Automated Viral Commercial Studio")
+    storyboard_json = writer.generate_storyboard()
+    print("Storyboard generated successfully.\n")
+    
+    # 3. Run The Assembler (Compile Timeline)
+    print("--- Step 2: Running The Assembler ---")
+    assembler = FilmAssembler(storyboard_json)
+    assembler.compile_timeline()
+    
+    print("\n✨ PIPELINE EXECUTION COMPLETE! Ready to export. ✨")
+
+if __name__ == "__main__":
+    run_pipeline()
